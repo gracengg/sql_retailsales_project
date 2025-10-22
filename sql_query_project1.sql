@@ -18,39 +18,30 @@ CREATE TABLE retail_sales(
 					total_sale FLOAT
 					);
 
-SELECT * FROM retail_sales
-LIMIT 10;
+--
+SELECT * FROM retail_sales LIMIT 10;
 
 SELECT COUNT (*) FROM retail_sales LIMIT 10;
 
 SELECT COUNT(DISTINCT customer_id) FROM retail_sales;
 
-SELECT DISTINCT category FROM retail_sales;
-
+SELECT DISTINCT category FROM retail_sales
 --
 DELETE FROM retail_sales
 WHERE 
     sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
     gender IS NULL OR age IS NULL OR category IS NULL OR 
     quantiy IS NULL OR price_per_unit IS NULL OR cogs IS NULL;
-	
--- How many sales we have
-SELECT COUNT(*) AS tota_sale FROM retail_sales
-
---How many customers we have
-SELECT COUNT(DISTINCT customer_id) AS total_sale FROM retail_sales
 
 --Data Analysis & Business Key Problems & Answers
 
 -- Q1. Write a SQL Query to retrieve all the columns for sales made on '22-11-05'
 SELECT *
 FROM retail_sales
-WHERE sale_date = '2022-11-05'; 
+WHERE sale_date = '2022-11-05'
 
 --Q2. Retrieve all the transactions where category is 'Clothing' and quanity sold is more than 10 in the month of Nov-2022
-SELECT 
-  *
-FROM retail_sales
+SELECT * FROM retail_sales
 WHERE 
     category = 'Clothing'
     AND 
@@ -59,9 +50,7 @@ WHERE
     quantiy >= 4
 
 --Q3. Write a SQL query to caculate the total sales (total_sales) each category
-SELECT 
-    category, 
-COUNT(*) as num_sale,
+SELECT category, COUNT(*) as num_sale,
 SUM(total_sale) as total_sales
 FROM retail_sales
 GROUP BY category
